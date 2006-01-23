@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu id="windowMenu" text="MENU_WINDOW" bundle="jb.ga.ui.xml.resources.enhancedframewindowmenu" locale="en">
+	<menuitem text="MENU_WINDOW_MINIMISE" accelerator="MENU_WINDOW_MINIMISE_ACCELERATOR" action="minimiseAction"/>
+	<menuitem text="MENU_WINDOW_CLOSE" accelerator="MENU_WINDOW_CLOSE_ACCELERATOR" action="closeAction"/>
+	<separator/>
+	<menuitem text="MENU_WINDOW_NEXT" accelerator="MENU_WINDOW_NEXT_ACCELERATOR" action="nextWindowAction"/>
+	<menuitem text="MENU_WINDOW_PREVIOUS" accelerator="MENU_WINDOW_PREVIOUS_ACCELERATOR" action="previousWindowAction"/>
+	<separator/>
+</menu>
