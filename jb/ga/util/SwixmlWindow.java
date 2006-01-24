@@ -6,7 +6,7 @@
 //	All rights reserved.
 //
 package jb.ga.util;
-import jb.ga.Archangel;
+import jb.ga.ui.UI;
 import org.swixml.SwingEngine;
 import javax.swing.JFrame;
 import javax.swing.Action;
@@ -15,15 +15,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SwixmlWindow {
-	protected Archangel controller;
+	protected UI controller;
 	protected SwingEngine renderer;
 	protected JFrame window;
 	
-	public SwixmlWindow(Archangel controller) {
+	public SwixmlWindow(UI controller) {
 		this.controller = controller;
 	}
 	
-	public SwixmlWindow(Archangel controller, String xmlResource) {
+	public SwixmlWindow(UI controller, String xmlResource) {
 		this.controller = controller;
 		this.renderer = new EnhancedSwingEngine(this);
 		try {
@@ -57,5 +57,11 @@ public class SwixmlWindow {
 	/** Delegate method to move the WorkflowWindow's underlying window to the front. */
 	public void toFront() {
 		window.toFront();
+	}
+	
+	public void setCustomCloseAction(Action a) {
+		if (window instanceof EnhancedJFrame) {
+			((EnhancedJFrame)window).setCustomCloseAction(a);
+		}
 	}
 }

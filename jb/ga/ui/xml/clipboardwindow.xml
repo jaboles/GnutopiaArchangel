@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enhancedframe title="TITLE" bundle="jb.ga.ui.xml.resources.clipboardwindow" locale="en">
+	<menubar/>
+	<panel layout="BorderLayout" constraints="BorderLayout.CENTER" border="EmptyBorder(4,4,4,4)">
+		<vbox constraints="BorderLayout.NORTH">
+			<hbox>
+				<panel border="TitledBorder(GRP_HISTORY)">
+					<button id="previousButton" text="&lt;" action="previousAction" enabled="false"/>
+					<button text="BTN_HISTORY" enabled="false"/>
+					<button id="nextButton" text="&gt;" action="nextAction" enabled="false"/>
+				</panel>
+				<panel border="TitledBorder(GRP_EDITING)">
+					<checkbox text="CBX_WORD_WRAP" action="wordWrapAction"/>
+					<checkbox text="CBX_EDIT" action="editAction"/>
+				</panel>
+			</hbox>
+			<hbox>
+				<panel border="TitledBorder(GRP_MISC)">
+					<button text="BTN_STRIP_LOCATIONS" action="stripLocationsAction"/>
+					<button text="BTN_ISOLATE_EXPORT_LINES" action="isolateExportLinesAction" enabled="false"/>
+				</panel>
+			</hbox>
+		</vbox>
+		<scrollpane constraints="BorderLayout.CENTER">
+			<textarea id="textArea" rows="16" cols="30" editable="false"/>
+		</scrollpane>
+	</panel>
+</enhancedframe>

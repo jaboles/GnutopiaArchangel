@@ -9,16 +9,14 @@ package jb.ga;
 import jb.ga.ui.*;
 
 public class Archangel {
-	MainWindow mainWindow;
-
+	UI ui;
+	
 	public Archangel() {
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Gnutopia Archangel");
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		System.setProperty("apple.awt.brushMetalLook", "true");
 		
-		mainWindow = new MainWindow(this);
-		
-		mainWindow.show();
+		ui = new UI(this);
 	}
 	
 	public static void crashed(Throwable e) {
