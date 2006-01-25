@@ -7,6 +7,7 @@
 //
 package jb.ga;
 import jb.ga.ui.*;
+import jb.ga.gamedata.*;
 
 public class Archangel {
 	UI ui;
@@ -14,7 +15,9 @@ public class Archangel {
 	public Archangel() {
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Gnutopia Archangel");
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
-		System.setProperty("apple.awt.brushMetalLook", "true");
+		System.setProperty("apple.awt.brushMetalLook", "false");
+		
+		Buildings.init();
 		
 		ui = new UI(this);
 	}

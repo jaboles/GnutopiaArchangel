@@ -14,12 +14,14 @@ public class UI {
 	private Archangel controller;
 	private MainWindow mainWindow;
 	private ClipboardWindow clipboardWindow;
+	private BuildingCalculatorWindow buildingCalculatorWindow;
 	
 	public UI(Archangel controller) {
 		this.controller = controller;
 		
 		mainWindow = new MainWindow(this);
 		clipboardWindow = new ClipboardWindow(this);
+		buildingCalculatorWindow = new BuildingCalculatorWindow(this);
 		
 		mainWindow.setCustomCloseAction(quitAction);
 
@@ -42,6 +44,12 @@ public class UI {
 	public Action clipboardViewerAction = new AbstractAction() {
 		public void actionPerformed(ActionEvent e) {
 			clipboardWindow.show();
+		}
+	};
+	
+	public Action buildingCalculatorAction = new AbstractAction() {
+		public void actionPerformed(ActionEvent e) {
+			buildingCalculatorWindow.show();
 		}
 	};
 }

@@ -10,8 +10,8 @@
 	</menubar>
 	<toolbar constraints="BorderLayout.CENTER" floatable="false">
 		<button icon="jb/ga/resources/toolbarButtonGraphics/general/Edit24.gif" action="clipboardViewerAction" tooltiptext="BTN_CLIPBOARD_VEWER_TOOLTIP" />
+		<button icon="jb/ga/resources/toolbarButtonGraphics/navigation/Home24.gif" action="buildingCalculatorAction" tooltiptext="BTN_BUILDING_CALCULATOR_TOOLTIP"/>
 		<!--<button icon="jb/ga/resources/toolbarButtonGraphics/general/" action="clipboardViewerAction" tooltiptext="BTN_CLIPBOARD_VEWER_TOOLTIP"/>
-		<button icon="jb/ga/resources/toolbarButtonGraphics/general/" action="clipboardViewerAction" tooltiptext="BTN_CLIPBOARD_VEWER_TOOLTIP"/>
 		<button icon="jb/ga/resources/toolbarButtonGraphics/general/" action="clipboardViewerAction" tooltiptext="BTN_CLIPBOARD_VEWER_TOOLTIP"/>
 		<button icon="jb/ga/resources/toolbarButtonGraphics/general/" action="clipboardViewerAction" tooltiptext="BTN_CLIPBOARD_VEWER_TOOLTIP"/>
 		-->
