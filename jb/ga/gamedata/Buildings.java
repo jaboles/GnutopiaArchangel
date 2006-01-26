@@ -14,6 +14,7 @@ public class Buildings {
 	
 	public static void init() {
 		list = new LinkedList();
+		list.add(new BarrenLand());
 		list.add(new HomeBuilding());
 		list.add(new FarmBuilding());
 		list.add(new MillBuilding());

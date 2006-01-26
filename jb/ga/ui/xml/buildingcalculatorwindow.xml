@@ -3,24 +3,72 @@
 	<menubar/>
 	<panel layout="BorderLayout" constraints="BorderLayout.CENTER" border="EmptyBorder(4,4,4,4)">
 		<hbox constraints="BorderLayout.CENTER">
-			<panel layout="BorderLayout">
+			<panel layout="BorderLayout"  border="EmptyBorder(4,4,4,4)">
 				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
 					<label>Building name:</label>
-					<label/>
+					<label text=" "/>
 				</panel>
 				<panel id="nameColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<label>Total:</label>
+				</panel>
 			</panel>
 			
-			<panel layout="BorderLayout">
-				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
-					<label>Built:</label>
-					<label>No. and %</label>
-				</panel>
-				<hbox constraints="BorderLayout.CENTER">
-					<panel id="builtNumberColumn"/>
-					<panel id="builtPercentageColumn"/>
-				</hbox>
+			<panel border="EmptyBorder(4,4,4,4)" layout="BorderLayout">
+				<separator constraints="BorderLayout.CENTER" orientation="VERTICAL"/>
 			</panel>
+			
+			<panel layout="BorderLayout" border="EmptyBorder(4,4,4,4)">
+				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
+					<label>Already built:</label>
+					<label>(number)</label>
+				</panel>
+				<panel id="builtNumberColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<formattedtextfield id="builtNumberTotal" initclass="java.text.DecimalFormat()" editable="false"/>
+				</panel>
+			</panel>
+			<panel layout="BorderLayout" border="EmptyBorder(4,4,4,4)">
+				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
+					<label> </label>
+					<label>(%)</label>
+				</panel>
+				<panel id="builtPercentageColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<label text=" "/>
+				</panel>
+			</panel>
+			
+			<panel border="EmptyBorder(4,4,4,4)" layout="BorderLayout">
+				<separator constraints="BorderLayout.CENTER" orientation="VERTICAL"/>
+			</panel>
+
+			<panel layout="BorderLayout" border="EmptyBorder(4,4,4,4)">
+				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
+					<label>In Progress:</label>
+					<label> </label>
+				</panel>
+				<panel id="inProgressNumberColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<formattedtextfield id="inProgressNumberTotal" initclass="java.text.DecimalFormat()" editable="false"/>
+				</panel>
+			</panel>
+			
+			<panel border="EmptyBorder(4,4,4,4)" layout="BorderLayout">
+				<separator constraints="BorderLayout.CENTER" orientation="VERTICAL"/>
+			</panel>
+
+			<panel layout="BorderLayout" border="EmptyBorder(4,4,4,4)">
+				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
+					<label>Goal:</label>
+					<label>(%)</label>
+				</panel>
+				<panel id="goalPercentageColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<label text=" "/>
+				</panel>
+			</panel>
+
 		</hbox>
 	</panel>
 </enhancedframe>
