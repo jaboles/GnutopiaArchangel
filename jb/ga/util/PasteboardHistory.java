@@ -20,6 +20,10 @@ public class PasteboardHistory extends LinkedList implements ChangeListener {
 	
 	public void stateChanged(ChangeEvent e) {
 		add(((Pasteboard)e.getSource()).get());
+	}
+	
+	public void add(String text) {
+		super.add(text);
 		index = size() - 1;
 	}
 	

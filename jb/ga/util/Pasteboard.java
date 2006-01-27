@@ -34,7 +34,9 @@ public class Pasteboard implements ClipboardOwner {
 	}
 	
 	public void put(String text) {
+		watcher.setEnabled(false);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(text), this);
+		watcher.setEnabled(true);
 	}
 	
 	public PasteboardWatcher getWatcher() {

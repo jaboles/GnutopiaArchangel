@@ -9,6 +9,7 @@ package jb.ga.ui;
 import jb.ga.util.*;
 import jb.ga.gamedata.*;
 import jb.ga.gamedata.buildings.*;
+import jb.ga.data.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -77,7 +78,6 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			//name.setMinimumSize(new Dimension((int)name.getSize().getWidth(), (int)((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().getSize().getHeight()));
 			((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().setColumns(5);
 			builtPercentage.setEditable(false);
-			builtPercentage.setEnabled(false);
 			builtPercentage.setColumns(3);
 			((JSpinner.NumberEditor)inProgressNumber.getEditor()).getTextField().setColumns(5);
 			((JSpinner.NumberEditor)goalPercentage.getEditor()).getTextField().setColumns(3);
@@ -108,7 +108,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		}
 	}
 	
-	public void recalculateFromBuiltNumber(JSpinner source) {
+	private void recalculateFromBuiltNumber(JSpinner source) {
 		int totalBuildings = 0;
 		Iterator it;
 		
@@ -128,7 +128,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		}
 	}
 	
-	public void recalculateFromInProgressNumber(JSpinner source) {
+	private void recalculateFromInProgressNumber(JSpinner source) {
 		int totalBuildings = 0;
 		Iterator it;
 		
@@ -137,5 +137,15 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			totalBuildings += ((Integer)((JSpinner)inProgressNumberMap.get(it.next())).getValue()).intValue();
 		}
 		inProgressNumberTotal.setValue(new Integer(totalBuildings));
+	}
+	
+	public void loadSurvey(Survey s) {
+		Iterator it = Buildings.iterator();
+		while(it.hasNext()) {
+			Building b = (Building)it.next();
+			((JSpinner)builtNumberMap.get(b)).setValue(new Integer(s.getBuildingCount(b)));
+			((JSpinner)inProgressNumberMap.get(b)).setValue(new Integer(s.getUnderConstructionCount(b)));
+		}
+		recalculateFromBuiltNumber(null);
 	}
 }

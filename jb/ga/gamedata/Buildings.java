@@ -24,6 +24,7 @@ public class Buildings {
 		list.add(new BarracksBuilding());
 		list.add(new FortBuilding());
 		list.add(new GuildBuilding());
+		list.add(new TowerBuilding());
 		list.add(new ThievesDenBuilding());
 		list.add(new WatchtowerBuilding());
 		list.add(new SchoolBuilding());

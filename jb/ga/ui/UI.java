@@ -7,17 +7,22 @@
 //
 package jb.ga.ui;
 import jb.ga.*;
+import jb.ga.util.Pasteboard;
 import javax.swing.*;
 import java.awt.event.*;
 
 public class UI {
 	private Archangel controller;
+	private ClipboardChangeListener clipboardListener;
+
 	private MainWindow mainWindow;
 	private ClipboardWindow clipboardWindow;
 	private BuildingCalculatorWindow buildingCalculatorWindow;
-	
+
 	public UI(Archangel controller) {
 		this.controller = controller;
+		clipboardListener = new ClipboardChangeListener(this);
+		Pasteboard.getInstance().addChangeListener(clipboardListener);
 		
 		mainWindow = new MainWindow(this);
 		clipboardWindow = new ClipboardWindow(this);
@@ -27,6 +32,15 @@ public class UI {
 
 		mainWindow.show();
 	}
+	
+	public ClipboardWindow getClipboardWindow() {
+		return clipboardWindow;
+	}
+	
+	public BuildingCalculatorWindow getBuildingCalculatorWindow() {
+		return buildingCalculatorWindow;
+	}
+	
 	
 	public Action quitAction = new AbstractAction() {
 		public void actionPerformed(ActionEvent e) {

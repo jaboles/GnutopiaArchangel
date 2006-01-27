@@ -9,6 +9,6 @@ package jb.ga.gamedata.buildings;
 
 public class BarrenLand extends Building {
 	public BarrenLand() {
-		pluralName = "Barren Land";
+		pluralName = "Barren Lands";
 	}	
 }

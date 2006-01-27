@@ -10,6 +10,8 @@ import jb.ga.ui.*;
 import jb.ga.gamedata.*;
 
 public class Archangel {
+	public static String VERSION = "0.2\337";
+	
 	UI ui;
 	
 	public Archangel() {

@@ -9,6 +9,7 @@ package jb.ga.gamedata.buildings;
 
 public class Building {
 	public String pluralName;
+	public String patternName;
 
 	public Building() {
 		pluralName = null;

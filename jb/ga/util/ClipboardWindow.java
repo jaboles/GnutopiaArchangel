@@ -39,6 +39,11 @@ public class ClipboardWindow extends SwixmlWindow {
 		nextButton.setEnabled(pb.getHistory().hasNext());
 	}
 	
+	public void display(String s) {
+		textArea.setText(s);
+	}
+	
+	
 	protected ChangeListener clipboardChangeListener = new ChangeListener() {
 		public void stateChanged(ChangeEvent e) {
 			textArea.setText(pb.get());
@@ -48,7 +53,9 @@ public class ClipboardWindow extends SwixmlWindow {
 	
 	public Action nextAction = new AbstractAction() {
 		public void actionPerformed(ActionEvent e) {
-			textArea.setText(pb.getHistory().next());
+			String text = pb.getHistory().next();
+			textArea.setText(text);
+			Pasteboard.getInstance().put(text);
 			updateButtonStatus();
 		}
 	};
@@ -61,7 +68,9 @@ public class ClipboardWindow extends SwixmlWindow {
 
 	public Action previousAction = new AbstractAction() {
 		public void actionPerformed(ActionEvent e) {
-			textArea.setText(pb.getHistory().previous());
+			String text = pb.getHistory().previous();
+			textArea.setText(text);
+			Pasteboard.getInstance().put(text);
 			updateButtonStatus();
 		}
 	};
@@ -80,7 +89,11 @@ public class ClipboardWindow extends SwixmlWindow {
 			
 			textArea.setEditable(editable);
 			pb.getWatcher().setEnabled(!editable);
-			if (!editable) pb.put(textArea.getText());
+			if (!editable) {
+				pb.put(textArea.getText());
+				pb.getHistory().add(textArea.getText());
+				updateButtonStatus();
+			}
 		}
 	};
 
