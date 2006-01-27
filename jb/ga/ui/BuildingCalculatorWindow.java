@@ -22,6 +22,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 	public JPanel builtPercentageColumn;
 	public JPanel inProgressNumberColumn;
 	public JPanel goalPercentageColumn;
+	public JPanel effectColumn;
 	
 	public JFormattedTextField builtNumberTotal;
 	public JFormattedTextField inProgressNumberTotal;
@@ -31,6 +32,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 	public Map builtPercentageMap;
 	public Map inProgressNumberMap;
 	public Map goalPercentageMap;
+	public Map effectMap;
 	
 	public BuildingCalculatorWindow(UI ui) {
 		super(ui);
@@ -46,6 +48,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		builtPercentageMap = new HashMap();
 		inProgressNumberMap = new HashMap();
 		goalPercentageMap = new HashMap();
+		effectMap = new HashMap();
 		
 		construct();
 		pack();
@@ -58,12 +61,14 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		builtPercentageColumn.removeAll();
 		inProgressNumberColumn.removeAll();
 		goalPercentageColumn.removeAll();
+		effectColumn.removeAll();
 
 		nameColumn.setLayout(new GridLayout(Buildings.size(), 1));
 		builtNumberColumn.setLayout(new GridLayout(Buildings.size(), 1));
 		builtPercentageColumn.setLayout(new GridLayout(Buildings.size(), 1));
 		inProgressNumberColumn.setLayout(new GridLayout(Buildings.size(), 1));
 		goalPercentageColumn.setLayout(new GridLayout(Buildings.size(), 1));
+		effectColumn.setLayout(new GridLayout(Buildings.size(), 1));
 		
 		Iterator it = Buildings.iterator();
 		while (it.hasNext()) {
@@ -74,6 +79,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			JFormattedTextField builtPercentage = new JFormattedTextField(new DecimalFormat("###.#"));
 			JSpinner inProgressNumber = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 			JSpinner goalPercentage = new JSpinner(new SpinnerNumberModel(0.0, 0.0, Double.MAX_VALUE, 0.1));
+			JLabel effect = new JLabel(b.getEffectString(0, 0, 1.0));
 
 			//name.setMinimumSize(new Dimension((int)name.getSize().getWidth(), (int)((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().getSize().getHeight()));
 			((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().setColumns(5);
@@ -87,28 +93,33 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			builtPercentageColumn.add(builtPercentage);
 			inProgressNumberColumn.add(inProgressNumber);
 			goalPercentageColumn.add(goalPercentage);
+			effectColumn.add(effect);
 			
 			nameMap.put(b, name);
 			builtNumberMap.put(b, builtNumber);
 			builtPercentageMap.put(b, builtPercentage);
 			inProgressNumberMap.put(b, inProgressNumber);
 			goalPercentageMap.put(b, goalPercentage);
+			effectMap.put(b, effect);
 			
 			builtNumber.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					recalculateFromBuiltNumber((JSpinner)e.getSource());
+					recalculateBuiltNumber((JSpinner)e.getSource());
+					recalculateInProgressNumber((JSpinner)e.getSource());
+					recalculateEffects();
 				}
 			});
 			
 			inProgressNumber.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					recalculateFromInProgressNumber((JSpinner)e.getSource());
+					recalculateInProgressNumber((JSpinner)e.getSource());
+					recalculateEffects();
 				}
 			});
 		}
 	}
 	
-	private void recalculateFromBuiltNumber(JSpinner source) {
+	private void recalculateBuiltNumber(JSpinner source) {
 		int totalBuildings = 0;
 		Iterator it;
 		
@@ -128,7 +139,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		}
 	}
 	
-	private void recalculateFromInProgressNumber(JSpinner source) {
+	private void recalculateInProgressNumber(JSpinner source) {
 		int totalBuildings = 0;
 		Iterator it;
 		
@@ -139,6 +150,21 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		inProgressNumberTotal.setValue(new Integer(totalBuildings));
 	}
 	
+	private void recalculateEffects() {
+		Iterator it;
+		Building b;
+		
+		it = Buildings.iterator();
+		while (it.hasNext()) {
+			b = (Building)it.next();
+			int buildingCount = ((Integer)((JSpinner)builtNumberMap.get(b)).getValue()).intValue();
+			int inProgressCount = ((Integer)((JSpinner)inProgressNumberMap.get(b)).getValue()).intValue();
+			int totalLand = ((Integer)builtNumberTotal.getValue()).intValue() + ((Integer)inProgressNumberTotal.getValue()).intValue();
+			
+			((JLabel)effectMap.get(b)).setText(b.getEffectString(buildingCount, totalLand, 1.0));
+		}
+	}
+	
 	public void loadSurvey(Survey s) {
 		Iterator it = Buildings.iterator();
 		while(it.hasNext()) {
@@ -146,6 +172,8 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			((JSpinner)builtNumberMap.get(b)).setValue(new Integer(s.getBuildingCount(b)));
 			((JSpinner)inProgressNumberMap.get(b)).setValue(new Integer(s.getUnderConstructionCount(b)));
 		}
-		recalculateFromBuiltNumber(null);
+		recalculateBuiltNumber(null);
+		recalculateInProgressNumber(null);
+		recalculateEffects();
 	}
 }

@@ -13,7 +13,7 @@ public class ArmouryBuilding extends Building {
 	}
 
 	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		double fraction = (double)thisBuildingCount / (double)totalLandCount;
+		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
 		return "Training costs decreased by "+(efficiency*fraction*3*100)+"%.";
 	}
 }

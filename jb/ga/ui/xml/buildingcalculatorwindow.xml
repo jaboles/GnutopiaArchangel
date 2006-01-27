@@ -68,6 +68,22 @@
 					<label text=" "/>
 				</panel>
 			</panel>
+			
+			<panel border="EmptyBorder(4,4,4,4)" layout="BorderLayout">
+				<separator constraints="BorderLayout.CENTER" orientation="VERTICAL"/>
+			</panel>
+
+			<panel layout="BorderLayout"  border="EmptyBorder(4,4,4,4)">
+				<panel constraints="BorderLayout.NORTH" layout="GridLayout(2,1)">
+					<label>Effect:</label>
+					<label text=" "/>
+				</panel>
+				<panel id="effectColumn" constraints="BorderLayout.CENTER"/>
+				<panel constraints="BorderLayout.SOUTH" layout="GridLayout(1,1)">
+					<label text=" "/>
+				</panel>
+			</panel>
+
 
 		</hbox>
 	</panel>
