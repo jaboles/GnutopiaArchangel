@@ -11,4 +11,8 @@ public class GuildBuilding extends Building {
 	public GuildBuilding() {
 		pluralName = "Guilds";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Train about "+(efficiency*thisBuildingCount*0.02)+" wizards daily.";
+	}
 }

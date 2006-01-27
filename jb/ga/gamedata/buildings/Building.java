@@ -14,4 +14,8 @@ public class Building {
 	public Building() {
 		pluralName = null;
 	}
+	
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return null;
+	}
 }

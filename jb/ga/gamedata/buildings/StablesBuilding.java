@@ -11,4 +11,8 @@ public class StablesBuilding extends Building {
 	public StablesBuilding() {
 		pluralName = "Stables";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Produce "+(efficiency*thisBuildingCount)+" per day, house "+(efficiency*thisBuildingCount*75)+" horses.";
+	}
 }

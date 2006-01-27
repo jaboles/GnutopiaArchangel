@@ -11,4 +11,8 @@ public class BarrenLand extends Building {
 	public BarrenLand() {
 		pluralName = "Barren Lands";
 	}	
+	
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "";
+	}
 }

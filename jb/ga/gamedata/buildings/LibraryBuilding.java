@@ -11,4 +11,8 @@ public class LibraryBuilding extends Building {
 	public LibraryBuilding() {
 		pluralName = "Libraries";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return (efficiency*thisBuildingCount*3)+" free science points per day.";
+	}
 }

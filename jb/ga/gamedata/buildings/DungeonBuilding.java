@@ -11,4 +11,8 @@ public class DungeonBuilding extends Building {
 	public DungeonBuilding() {
 		pluralName = "Dungeons";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "House "+(efficiency*thisBuildingCount*30)+" prisoners.";
+	}
 }

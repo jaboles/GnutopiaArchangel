@@ -11,4 +11,8 @@ public class HomeBuilding extends Building {
 	public HomeBuilding() {
 		pluralName = "Homes";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "House "+(thisBuildingCount*5)+" extra people.";
+	}
 }

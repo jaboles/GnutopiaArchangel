@@ -11,4 +11,9 @@ public class TavernBuilding extends Building {
 	public TavernBuilding() {
 		pluralName = "Taverns";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		double fraction = (double)thisBuildingCount / (double)totalLandCount;
+		return (efficiency*fraction*4*100)+"% lower draft and mercenary costs.";
+	}
 }

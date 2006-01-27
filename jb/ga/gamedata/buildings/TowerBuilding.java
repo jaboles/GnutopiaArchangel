@@ -11,4 +11,8 @@ public class TowerBuilding extends Building {
 	public TowerBuilding() {
 		pluralName = "Towers";
 	}
+
+	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Produce "+(efficiency*thisBuildingCount*10)+" runes daily.";
+	}
 }

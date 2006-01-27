@@ -17,7 +17,9 @@ public class SelfSurveyFormatter {
 	private Pattern browserFormat;
 	
 	private SelfSurveyFormatter() {
-		StringBuffer browserFormatString = new StringBuffer("");
+		StringBuffer browserFormatString = new StringBuffer("(?s)Kingdom Growth(?:\\s*)Internal Affairs(?:\\s*)");
+		browserFormatString.append("(.*?), I am in charge of the development of infrastructure(?:.*?)");
+		browserFormatString.append("our buildings are functioning at ([\\d\\.]*)% efficiency\\.(?:.*?)");
 		Iterator it = Buildings.iterator();
 		for (int i = 0; i < Buildings.size(); i++) {
 			browserFormatString.append(((Building)it.next()).pluralName+"\\r?\\n");
@@ -53,7 +55,10 @@ public class SelfSurveyFormatter {
 	private Survey read(String data, Matcher m) {
 		Survey s = new Survey();
 		
-		int i = 1;
+		s.setRulerName(m.group(1));
+		s.setEfficiency(Double.parseDouble(m.group(2)) / 100.0);
+		
+		int i = 3;
 		Iterator it = Buildings.iterator();
 		for (; it.hasNext(); i++) {
 			try {
