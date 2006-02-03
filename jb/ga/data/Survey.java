@@ -10,8 +10,12 @@ import java.util.*;
 import jb.ga.Archangel;
 import jb.ga.gamedata.buildings.Building;
 import jb.ga.gamedata.Buildings;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Survey {
+	private static NumberFormat nf1dp = new DecimalFormat("#,###.#");
+	
 	private Map buildings;
 	private Map underConstruction;
 	private int totalBuiltAcres;
@@ -81,9 +85,9 @@ public class Survey {
 		// Listing of numbers/percentages of complete/constructing buildings.
 		for (int i = 0; i < nonzeroBuildingsList.size(); i++) {
 			Building b = (Building)nonzeroBuildingsList.get(i);
-			report.append((i+1)+". "+b.pluralName+": "+getBuildingCount(b)+" ("+(100.0*getBuildingCount(b)/(totalBuiltAcres+totalInProgressAcres))+"%)");
+			report.append((i+1)+". "+b.pluralName+": "+getBuildingCount(b)+" ("+nf1dp.format(100.0*getBuildingCount(b)/(totalBuiltAcres+totalInProgressAcres))+"%)");
 			if (getUnderConstructionCount(b)>0) {
-				report.append(" + "+getUnderConstructionCount(b)+" in progress (+"+(100.0*getUnderConstructionCount(b)/(totalBuiltAcres+totalInProgressAcres))+"%)");
+				report.append(" + "+getUnderConstructionCount(b)+" in progress (+"+nf1dp.format(100.0*getUnderConstructionCount(b)/(totalBuiltAcres+totalInProgressAcres))+"%)");
 			}
 			report.append("\n");
 		}
@@ -93,7 +97,7 @@ public class Survey {
 		for (int i = 0; i < nonzeroBuildingsList.size(); i++) {
 			Building b = (Building)nonzeroBuildingsList.get(i);
 			if (getBuildingCount(b) > 0) {
-				report.append((i+1)+". "+b.getEffectString(getBuildingCount(b), totalBuiltAcres+totalInProgressAcres, efficiency)+"\n");
+				report.append((i+1)+". "+b.getUAReportEffectString(getBuildingCount(b), totalBuiltAcres+totalInProgressAcres, efficiency)+"\n");
 			}
 		}
 		report.append("\n");

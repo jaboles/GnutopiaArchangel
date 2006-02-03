@@ -27,7 +27,6 @@ public class Race {
 	public int eliteDef;
 	
 	public int warHorseOff;
-	public int prisonerOff;
 	public int mercenaryOff;
 	
 	public Race() {
@@ -45,7 +44,6 @@ public class Race {
 		eliteOff = 0;
 		eliteDef = 0;
 		warHorseOff = 1;
-		prisonerOff = 3;
 		mercenaryOff = 3;
 	}
 }

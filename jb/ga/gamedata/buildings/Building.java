@@ -6,8 +6,14 @@
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 package jb.ga.gamedata.buildings;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Building {
+	protected static NumberFormat nf2dp = new DecimalFormat("#,###.##");
+	protected static NumberFormat nf1dp = new DecimalFormat("#,###.#");
+	protected static NumberFormat nf0dp = new DecimalFormat("#,###");
+
 	public String pluralName;
 	public String patternName;
 
@@ -15,7 +21,7 @@ public class Building {
 		pluralName = null;
 	}
 	
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		return null;
 	}
 }

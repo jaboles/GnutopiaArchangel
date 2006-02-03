@@ -10,6 +10,7 @@ import jb.ga.data.Survey;
 import jb.ga.gamedata.Buildings;
 import jb.ga.gamedata.buildings.*;
 import java.util.*;
+import java.text.*;
 import java.util.regex.*;
 
 public class SelfSurveyFormatter {
@@ -22,16 +23,16 @@ public class SelfSurveyFormatter {
 		browserFormatString.append("our buildings are functioning at ([\\d\\.]*)% efficiency\\.(?:.*?)");
 		Iterator it = Buildings.iterator();
 		for (int i = 0; i < Buildings.size(); i++) {
-			browserFormatString.append(((Building)it.next()).pluralName+"\\r?\\n");
+			browserFormatString.append("(?:\\s*)"+((Building)it.next()).pluralName);
 		}
 		for (int i = 0; i < Buildings.size(); i++) {
-			browserFormatString.append("([\\d,]+)\\r?\\n");
+			browserFormatString.append("(?:\\s*)([\\d,]+)");
 		}
 		for (int i = 0; i < Buildings.size(); i++) {
-			browserFormatString.append("(?:[\\d\\.]*%)\\r?\\n");
+			browserFormatString.append("(?:\\s*)(?:[\\d\\.]*%)");
 		}
 		for (int i = 0; i < Buildings.size()*24; i++) {
-			browserFormatString.append("([\\d,]*|\\-)\\r?\\n");
+			browserFormatString.append("(?:\\s*)([\\d,]*|\\-)");
 		}
 		System.out.println(browserFormatString.toString());
 		browserFormat = Pattern.compile(browserFormatString.toString());

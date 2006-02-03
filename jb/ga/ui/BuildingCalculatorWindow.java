@@ -79,7 +79,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			JFormattedTextField builtPercentage = new JFormattedTextField(new DecimalFormat("###.#"));
 			JSpinner inProgressNumber = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 			JSpinner goalPercentage = new JSpinner(new SpinnerNumberModel(0.0, 0.0, Double.MAX_VALUE, 0.1));
-			JLabel effect = new JLabel(b.getEffectString(0, 0, 1.0));
+			JLabel effect = new JLabel(b.getUAReportEffectString(0, 0, 1.0));
 
 			//name.setMinimumSize(new Dimension((int)name.getSize().getWidth(), (int)((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().getSize().getHeight()));
 			((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().setColumns(5);
@@ -161,7 +161,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			int inProgressCount = ((Integer)((JSpinner)inProgressNumberMap.get(b)).getValue()).intValue();
 			int totalLand = ((Integer)builtNumberTotal.getValue()).intValue() + ((Integer)inProgressNumberTotal.getValue()).intValue();
 			
-			((JLabel)effectMap.get(b)).setText(b.getEffectString(buildingCount, totalLand, 1.0));
+			((JLabel)effectMap.get(b)).setText(b.getUAReportEffectString(buildingCount, totalLand, 1.0));
 		}
 	}
 	

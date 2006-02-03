@@ -12,7 +12,7 @@ public class LibraryBuilding extends Building {
 		pluralName = "Libraries";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return (efficiency*thisBuildingCount*3)+" free science points per day.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return nf2dp.format(efficiency*thisBuildingCount*3)+" science points per hour";
 	}
 }

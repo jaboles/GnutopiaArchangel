@@ -12,8 +12,8 @@ public class ThievesDenBuilding extends Building {
 		pluralName = "Thieves' Dens";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return (efficiency*fraction*4*100)+"% lower thievery losses, "+(efficiency*fraction*3*100)+"% increased thievery effectiveness.";
+		return "-"+nf2dp.format(efficiency*fraction*4*100)+"% losses, +"+nf2dp.format(efficiency*fraction*3*100)+"% effectiveness";
 	}
 }

@@ -12,8 +12,8 @@ public class TrainingGroundBuilding extends Building {
 		pluralName = "Training Grounds";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return "Daily wages decreased by "+(efficiency*fraction*3*100)+"%.";
+		return "-"+nf2dp.format(efficiency*fraction*3*100)+"% daily wages";
 	}
 }

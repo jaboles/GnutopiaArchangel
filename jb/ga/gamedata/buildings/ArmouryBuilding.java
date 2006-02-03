@@ -12,8 +12,9 @@ public class ArmouryBuilding extends Building {
 		pluralName = "Armouries";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return "Training costs decreased by "+(efficiency*fraction*3*100)+"%.";
+		// --FLAG--
+		return "-"+nf2dp.format(efficiency*fraction*3*100)+"% training costs";
 	}
 }

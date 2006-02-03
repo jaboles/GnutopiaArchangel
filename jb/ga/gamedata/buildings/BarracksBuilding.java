@@ -12,8 +12,8 @@ public class BarracksBuilding extends Building {
 		pluralName = "Barracks";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return (efficiency*fraction*1.5*100)+"% lower attack time, "+(efficiency*fraction*1*100)+"% increased military offence efficiency.";
+		return "-"+nf2dp.format(efficiency*fraction*1.5*100)+"% attack time, +"+nf2dp.format(efficiency*fraction*1*100)+"% offense bonus";
 	}
 }

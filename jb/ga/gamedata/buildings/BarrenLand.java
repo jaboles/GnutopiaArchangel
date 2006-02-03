@@ -12,7 +12,7 @@ public class BarrenLand extends Building {
 		pluralName = "Barren Lands";
 	}	
 	
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		return "";
 	}
 }

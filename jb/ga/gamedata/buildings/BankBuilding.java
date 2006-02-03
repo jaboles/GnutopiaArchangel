@@ -12,8 +12,8 @@ public class BankBuilding extends Building {
 		pluralName = "Banks";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return (efficiency*thisBuildingCount)+"gc a day, "+(efficiency*fraction*100)+"% increased income.";
+		return nf0dp.format(efficiency*thisBuildingCount)+"gc, +"+nf2dp.format(efficiency*fraction*100)+"% income";
 	}
 }

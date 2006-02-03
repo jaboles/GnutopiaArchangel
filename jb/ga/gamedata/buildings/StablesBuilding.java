@@ -12,7 +12,7 @@ public class StablesBuilding extends Building {
 		pluralName = "Stables";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return "Produce "+(efficiency*thisBuildingCount)+" per day, house "+(efficiency*thisBuildingCount*75)+" horses.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Produce "+nf0dp.format(efficiency*thisBuildingCount)+" horses/hour, hold "+nf0dp.format(efficiency*thisBuildingCount*75)+" horses";
 	}
 }

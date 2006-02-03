@@ -6,13 +6,14 @@
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 package jb.ga.gamedata.buildings;
+import jb.ga.gamedata.Constants;
 
 public class DungeonBuilding extends Building {
 	public DungeonBuilding() {
 		pluralName = "Dungeons";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return "House "+(efficiency*thisBuildingCount*30)+" prisoners.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return nf0dp.format(thisBuildingCount*30)+" prisoners ("+nf0dp.format(thisBuildingCount*30*Constants.prisonerOff)+" offense, "+nf0dp.format(thisBuildingCount*30*Constants.prisonerIncome)+"gc)";
 	}
 }

@@ -12,8 +12,9 @@ public class MillBuilding extends Building {
 		pluralName = "Mills";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return "Decrease building costs by "+(efficiency*fraction*4*100)+"%, exploration gc by "+(efficiency*fraction*3*100)+"%.";
+		// --FLAG--
+		return "Decrease building costs by "+nf1dp.format(efficiency*fraction*4*100)+"%, exploration gc by "+nf1dp.format(efficiency*fraction*3*100)+"%.";
 	}
 }

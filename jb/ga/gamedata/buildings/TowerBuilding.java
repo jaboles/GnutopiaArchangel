@@ -12,7 +12,7 @@ public class TowerBuilding extends Building {
 		pluralName = "Towers";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return "Produce "+(efficiency*thisBuildingCount*10)+" runes daily.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Produce "+nf0dp.format(efficiency*thisBuildingCount*10)+" runes per hour";
 	}
 }

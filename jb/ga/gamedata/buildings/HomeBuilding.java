@@ -12,7 +12,7 @@ public class HomeBuilding extends Building {
 		pluralName = "Homes";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return "House "+(thisBuildingCount*5)+" extra people.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "+"+(thisBuildingCount*5)+" maximum population";
 	}
 }

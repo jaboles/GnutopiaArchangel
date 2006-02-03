@@ -12,8 +12,8 @@ public class FortBuilding extends Building {
 		pluralName = "Forts";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return (efficiency*fraction*1.5*100)+"% lower losses, "+(efficiency*fraction*0.5*100)+"% increased military defence efficiency.";
+		return "-"+nf2dp.format(efficiency*fraction*1.5*100)+"% losses when attacked, +"+nf1dp.format(efficiency*fraction*0.5*100)+"% defense";
 	}
 }

@@ -12,7 +12,7 @@ public class GuildBuilding extends Building {
 		pluralName = "Guilds";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
-		return "Train about "+(efficiency*thisBuildingCount*0.02)+" wizards daily.";
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+		return "Training about "+nf2dp.format(efficiency*thisBuildingCount*0.02)+" wizards per hour.";
 	}
 }

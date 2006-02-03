@@ -12,8 +12,9 @@ public class SchoolBuilding extends Building {
 		pluralName = "Schools";
 	}
 
-	public String getEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
 		double fraction = (totalLandCount==0? 0 : (double)thisBuildingCount / (double)totalLandCount);
-		return (efficiency*fraction*3*100)+"% lower science costs.";
+		// --FLAG--
+		return "-"+nf2dp.format(efficiency*fraction*3*100)+"% science costs";
 	}
 }
