@@ -20,6 +20,8 @@ public class Archangel {
 		System.setProperty("apple.awt.brushMetalLook", "false");
 		
 		Buildings.init();
+		Races.init();
+		Personalities.init();
 		
 		ui = new UI(this);
 	}

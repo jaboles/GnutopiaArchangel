@@ -16,11 +16,16 @@ import java.util.regex.*;
 public class SelfSurveyFormatter {
 	private static SelfSurveyFormatter instance;
 	private Pattern browserFormat;
+	private Pattern browserSubFormat;
 	
 	private SelfSurveyFormatter() {
 		StringBuffer browserFormatString = new StringBuffer("(?s)Kingdom Growth(?:\\s*)Internal Affairs(?:\\s*)");
 		browserFormatString.append("(.*?), I am in charge of the development of infrastructure(?:.*?)");
 		browserFormatString.append("our buildings are functioning at ([\\d\\.]*)% efficiency\\.(?:.*?)");
+		StringBuffer browserSubFormatString = new StringBuffer("(?s)");
+		for (int i = 0; i < Buildings.size(); i++) {
+			browserSubFormatString.append("(?:\\s*)([\\d,]+|\\-)");
+		}
 		Iterator it = Buildings.iterator();
 		for (int i = 0; i < Buildings.size(); i++) {
 			browserFormatString.append("(?:\\s*)"+((Building)it.next()).pluralName);
@@ -31,11 +36,10 @@ public class SelfSurveyFormatter {
 		for (int i = 0; i < Buildings.size(); i++) {
 			browserFormatString.append("(?:\\s*)(?:[\\d\\.]*%)");
 		}
-		for (int i = 0; i < Buildings.size()*24; i++) {
-			browserFormatString.append("(?:\\s*)([\\d,]*|\\-)");
-		}
-		System.out.println(browserFormatString.toString());
+		browserFormatString.append("(?:\\s*)([\\d,\\s\\-]+)Behead");
+		
 		browserFormat = Pattern.compile(browserFormatString.toString());
+		browserSubFormat = Pattern.compile(browserSubFormatString.toString());
 	}
 	
 	public static SelfSurveyFormatter getInstance() {
@@ -48,6 +52,11 @@ public class SelfSurveyFormatter {
 		System.out.println("Seeing if we have a survey");
 		if (m.find()) {
 			System.out.println("got one");
+			
+			for (int i = 1; i <= m.groupCount(); i++) {
+				System.out.println(i+": "+m.group(i));
+			}
+			
 			return read(data, m);
 		}
 		return null;
@@ -66,13 +75,15 @@ public class SelfSurveyFormatter {
 				s.setBuildingCount((Building)it.next(), Integer.parseInt(m.group(i).replaceAll(",","")));
 			} catch (NumberFormatException ignored) {}
 		}
-		for (int j = 1; j <= 24; j++) {
+		
+		Matcher m2 = browserSubFormat.matcher(m.group(i));
+		while (m2.find()) {
 			it = Buildings.iterator();
-			for (; it.hasNext(); i++) {
+			for (int j = 0; it.hasNext(); j++) {
 				Building b = (Building)it.next();
 				try {
-					if (!m.group(i).equals("-"))
-						s.setUnderConstructionCount(b, s.getUnderConstructionCount(b) + Integer.parseInt(m.group(i).replaceAll(",","")));
+					if (!m2.group(j).equals("-"))
+						s.setUnderConstructionCount(b, s.getUnderConstructionCount(b) + Integer.parseInt(m2.group(j).replaceAll(",","")));
 				} catch (NumberFormatException ignored) {}
 			}
 		}

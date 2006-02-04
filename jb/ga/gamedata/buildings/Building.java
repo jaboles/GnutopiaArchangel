@@ -6,6 +6,8 @@
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 package jb.ga.gamedata.buildings;
+import jb.ga.gamedata.races.Race;
+import jb.ga.gamedata.personalities.Personality;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
@@ -21,7 +23,7 @@ public class Building {
 		pluralName = null;
 	}
 	
-	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency) {
+	public String getUAReportEffectString(int thisBuildingCount, int totalLandCount, double efficiency, Race race, Personality personality) {
 		return null;
 	}
 }

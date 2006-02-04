@@ -8,11 +8,14 @@
 package jb.ga.ui;
 import jb.ga.util.*;
 import jb.ga.gamedata.*;
+import jb.ga.gamedata.personalities.Personality;
+import jb.ga.gamedata.races.Race;
 import jb.ga.gamedata.buildings.*;
 import jb.ga.data.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import java.text.*;
 
@@ -26,6 +29,10 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 	
 	public JFormattedTextField builtNumberTotal;
 	public JFormattedTextField inProgressNumberTotal;
+	public JComboBox raceComboBox;
+	public JComboBox personalityComboBox;
+	public JSpinner efficiencySpinner;
+	public JSpinner elitesHomeSpinner;
 	
 	public Map nameMap;
 	public Map builtNumberMap;
@@ -49,6 +56,44 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 		inProgressNumberMap = new HashMap();
 		goalPercentageMap = new HashMap();
 		effectMap = new HashMap();
+		
+		Iterator it;
+		
+		builtNumberTotal.setValue(new Integer(0));
+		inProgressNumberTotal.setValue(new Integer(0));
+		
+		efficiencySpinner.setModel(new SpinnerNumberModel(100.0, 0.0, 175.0, 1.0));
+		elitesHomeSpinner.setModel(new SpinnerNumberModel(0, 0, 10000000, 100));
+		
+		it = Races.iterator();
+		while (it.hasNext()) raceComboBox.addItem(it.next());
+		it = Personalities.iterator();
+		personalityComboBox.addItem(Personalities.DEFAULT);
+		while (it.hasNext()) personalityComboBox.addItem(it.next());
+		
+		raceComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				recalculateEffects();
+			}
+		});
+		
+		personalityComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				recalculateEffects();
+			}
+		});
+		
+		efficiencySpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				recalculateEffects();
+			}
+		});
+		
+		elitesHomeSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				recalculateEffects();
+			}
+		});
 		
 		construct();
 		pack();
@@ -79,7 +124,7 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 			JFormattedTextField builtPercentage = new JFormattedTextField(new DecimalFormat("###.#"));
 			JSpinner inProgressNumber = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 			JSpinner goalPercentage = new JSpinner(new SpinnerNumberModel(0.0, 0.0, Double.MAX_VALUE, 0.1));
-			JLabel effect = new JLabel(b.getUAReportEffectString(0, 0, 1.0));
+			JLabel effect = new JLabel(b.getUAReportEffectString(0, 0, 1.0, Races.DEFAULT, Personalities.DEFAULT));
 
 			//name.setMinimumSize(new Dimension((int)name.getSize().getWidth(), (int)((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().getSize().getHeight()));
 			((JSpinner.NumberEditor)builtNumber.getEditor()).getTextField().setColumns(5);
@@ -153,15 +198,17 @@ public class BuildingCalculatorWindow extends SwixmlWindow {
 	private void recalculateEffects() {
 		Iterator it;
 		Building b;
-		
+
+		int totalLand = ((Integer)builtNumberTotal.getValue()).intValue() + ((Integer)inProgressNumberTotal.getValue()).intValue();
+		if (totalLand == 0) return;
+
 		it = Buildings.iterator();
 		while (it.hasNext()) {
 			b = (Building)it.next();
 			int buildingCount = ((Integer)((JSpinner)builtNumberMap.get(b)).getValue()).intValue();
 			int inProgressCount = ((Integer)((JSpinner)inProgressNumberMap.get(b)).getValue()).intValue();
-			int totalLand = ((Integer)builtNumberTotal.getValue()).intValue() + ((Integer)inProgressNumberTotal.getValue()).intValue();
 			
-			((JLabel)effectMap.get(b)).setText(b.getUAReportEffectString(buildingCount, totalLand, 1.0));
+			((JLabel)effectMap.get(b)).setText(b.getUAReportEffectString(buildingCount, totalLand, ((Double)efficiencySpinner.getValue()).doubleValue()/100.0, (Race)raceComboBox.getSelectedItem(), (Personality)personalityComboBox.getSelectedItem()));
 		}
 	}
 	

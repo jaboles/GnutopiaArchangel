@@ -87,4 +87,24 @@
 
 		</hbox>
 	</panel>
+	<panel constraints="BorderLayout.SOUTH">
+		<hbox>
+			<vbox>
+				<label>Race</label>
+				<combobox id="raceComboBox"/>
+			</vbox>
+			<vbox>
+				<label>Personality</label>
+				<combobox id="personalityComboBox"/>
+			</vbox>
+			<vbox>
+				<label>Efficiency</label>
+				<spinner id="efficiencySpinner"/>
+			</vbox>
+			<vbox>
+				<label>Elites home</label>
+				<spinner id="elitesHomeSpinner"/>
+			</vbox>
+		</hbox>
+	</panel>
 </enhancedframe>

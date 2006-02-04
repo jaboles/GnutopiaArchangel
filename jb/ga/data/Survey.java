@@ -9,7 +9,7 @@ package jb.ga.data;
 import java.util.*;
 import jb.ga.Archangel;
 import jb.ga.gamedata.buildings.Building;
-import jb.ga.gamedata.Buildings;
+import jb.ga.gamedata.*;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
@@ -97,7 +97,7 @@ public class Survey {
 		for (int i = 0; i < nonzeroBuildingsList.size(); i++) {
 			Building b = (Building)nonzeroBuildingsList.get(i);
 			if (getBuildingCount(b) > 0) {
-				report.append((i+1)+". "+b.getUAReportEffectString(getBuildingCount(b), totalBuiltAcres+totalInProgressAcres, efficiency)+"\n");
+				report.append((i+1)+". "+b.getUAReportEffectString(getBuildingCount(b), totalBuiltAcres+totalInProgressAcres, efficiency, Races.DEFAULT, Personalities.DEFAULT)+"\n");
 			}
 		}
 		report.append("\n");

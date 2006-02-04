@@ -8,6 +8,5 @@
 package jb.ga.gamedata;
 
 public class Constants {
-	public static int prisonerOff = 3;
 	public static double prisonerIncome = 0.5;
 }

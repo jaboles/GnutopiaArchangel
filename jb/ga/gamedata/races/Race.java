@@ -28,9 +28,20 @@ public class Race {
 	
 	public int warHorseOff;
 	public int mercenaryOff;
+	public int prisonerOff;
+	
+	public double maxScienceMultiplier;
+	public double explorationCostMultiplier;
+	public double militaryWageMultiplier;
+	public double maxPopulationMultiplier;
+	public double buildingEfficiencyMultiplier;
+	public double incomeMultiplier;
+	public double attackGainsMultiplier;
+	public double constructionCostMultiplier;
+	public double attackTimeMultiplier;
 	
 	public Race() {
-		name = null;
+		name = "Unknown";
 		soldierPluralName = "Soldiers";
 		soldierOff = 1;
 		soldierDef = 1;
@@ -45,5 +56,20 @@ public class Race {
 		eliteDef = 0;
 		warHorseOff = 1;
 		mercenaryOff = 3;
+		prisonerOff = 3;
+		
+		maxScienceMultiplier = 1.0;
+		explorationCostMultiplier = 1.0;
+		militaryWageMultiplier = 1.0;
+		maxPopulationMultiplier = 1.0;
+		buildingEfficiencyMultiplier = 1.0;
+		incomeMultiplier = 1.0;
+		attackGainsMultiplier = 1.0;
+		constructionCostMultiplier = 1.0;
+		attackTimeMultiplier = 1.0;
+	}
+
+	public String toString() {
+		return name;
 	}
 }

@@ -42,7 +42,7 @@ public class PasteboardWatcher extends Thread
     public void run() {
         try {
             while(true) {
-                Thread.sleep(200L);
+                Thread.sleep(400L);
                 if(enabled) {
                     newdata = pasteboard.get();
                     if(!newdata.equals(olddata)) {
